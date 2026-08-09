@@ -54,7 +54,7 @@ jobs:
             -o app/src/main/assets/face_recognition_sface_2021dec.onnx
           echo '0ba9fbfa01b5270c96627c4ef784da859931e02f04419c829e83484087c34e79  app/src/main/assets/face_recognition_sface_2021dec.onnx' | sha256sum -c -
 
-      - name: Build AttendGate Alpha 3
+      - name: Build AttendGate Alpha 3 production UI
         run: |
           cd attendgate
           gradle :app:assembleDebug --stacktrace --no-daemon
