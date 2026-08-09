@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Download compiled AttendGate APK
         run: |
-          curl -L --fail --retry 3 --retry-delay 2 'https://tmpfiles.org/dl/wjwCOuVfXa28/attendgate-v3.0.0-alpha1-arm64.apk' -o AttendGate-v3.0.0-alpha1-ARM64.apk
+          curl -L --fail --retry 3 --retry-delay 2 'https://release-assets.githubusercontent.com/github-production-release-asset/1323039156/dcb4be83-58a7-4480-93ca-2e37f64af25c?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-08-09T07%3A24%3A15Z&rscd=attachment%3B+filename%3DAttendGate-v3.0.0-alpha1-ARM64.apk&rsct=application%2Fvnd.android.package-archive&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-08-09T06%3A23%3A53Z&ske=2026-08-09T07%3A24%3A15Z&sks=b&skv=2018-11-09&sig=RVdfcfcxiHhDzTP1w94eBs5M5JWU%2Bsz4wvw8vVzmT%2F8%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4NjI1OTQ4OSwibmJmIjoxNzg2MjU3Njg5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.duW1XaA_eRuZ4R4fVyUhVTcAq0m-Seo8jyyr45_hmZc&response-content-disposition=attachment%3B%20filename%3DAttendGate-v3.0.0-alpha1-ARM64.apk&response-content-type=application%2Fvnd.android.package-archive' -o AttendGate-v3.0.0-alpha1-ARM64.apk
           echo 'd86b919524c3afc6c7967d965a09ed32d40fcbed53f00666af9e79fb8b317135  AttendGate-v3.0.0-alpha1-ARM64.apk' | sha256sum -c -
       - name: Upload APK
         uses: actions/upload-artifact@v4
