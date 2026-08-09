@@ -1,0 +1,25 @@
+name: Temporary AttendGate Handoff
+
+on:
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  handoff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download compiled AttendGate APK
+        run: |
+          curl -L --fail --retry 3 --retry-delay 2 'https://tmpfiles.org/dl/wjwCOuVfXa28/attendgate-v3.0.0-alpha1-arm64.apk' -o AttendGate-v3.0.0-alpha1-ARM64.apk
+          echo 'd86b919524c3afc6c7967d965a09ed32d40fcbed53f00666af9e79fb8b317135  AttendGate-v3.0.0-alpha1-ARM64.apk' | sha256sum -c -
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: AttendGate-v3.0.0-alpha1-ARM64
+          path: AttendGate-v3.0.0-alpha1-ARM64.apk
+          retention-days: 1
+          compression-level: 0
