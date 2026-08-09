@@ -13,60 +13,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-
-      - uses: android-actions/setup-android@v3
-
-      - name: Install Android SDK
-        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
-
-      - uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '9.3.1'
-
-      - name: Fetch AttendGate Alpha 3 source
+      - name: Download compiled AttendGate Alpha 4 APK
         run: |
-          git clone --depth 1 --branch attendgate-v3-build https://github.com/gigtarget/facial-attendacne.git attendgate
-          cd attendgate
-          cat attendgate-source.part-00 attendgate-source.part-01-* attendgate-source.part-02 attendgate-source.part-03 attendgate-source.part-04 > attendgate-source.b64
-          base64 -d attendgate-source.b64 > attendgate-source.zip
-          unzip -t attendgate-source.zip
-          unzip -q attendgate-source.zip
-          cp -a attendgate-patches/app/. app/
-
-      - name: Install exact uploaded AttendGate icon
-        run: |
-          cd attendgate
-          rm -f app/src/main/res/drawable/attendgate_launcher.xml
-          mkdir -p app/src/main/res/drawable-nodpi
-          base64 -d attendgate-assets/attendgate_launcher_256.png.b64 > app/src/main/res/drawable-nodpi/attendgate_launcher.png
-          file app/src/main/res/drawable-nodpi/attendgate_launcher.png
-
-      - name: Fetch verified SFace model
-        run: |
-          cd attendgate
-          mkdir -p app/src/main/assets
-          curl -L --fail --retry 3 --retry-delay 2 \
-            'https://huggingface.co/opencv/opencv_zoo/resolve/main/models/face_recognition_sface/face_recognition_sface_2021dec.onnx?download=true' \
-            -o app/src/main/assets/face_recognition_sface_2021dec.onnx
-          echo '0ba9fbfa01b5270c96627c4ef784da859931e02f04419c829e83484087c34e79  app/src/main/assets/face_recognition_sface_2021dec.onnx' | sha256sum -c -
-
-      - name: Build AttendGate Alpha 3 production UI
-        run: |
-          cd attendgate
-          gradle :app:assembleDebug --stacktrace --no-daemon
-          cp app/build/outputs/apk/debug/app-debug.apk ../AttendGate-v3.0.0-alpha3-ARM64.apk
-          unzip -t ../AttendGate-v3.0.0-alpha3-ARM64.apk >/dev/null
-          sha256sum ../AttendGate-v3.0.0-alpha3-ARM64.apk
-          ls -lh ../AttendGate-v3.0.0-alpha3-ARM64.apk
+          curl -L --fail --retry 3 --retry-delay 2 'https://release-assets.githubusercontent.com/github-production-release-asset/1323039156/42a1c23c-abd2-4fbd-ba68-42205af8b0f5?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-08-09T12%3A57%3A47Z&rscd=attachment%3B+filename%3DAttendGate-v3.0.0-alpha4-ARM64.apk&rsct=application%2Fvnd.android.package-archive&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-08-09T11%3A57%3A38Z&ske=2026-08-09T12%3A57%3A47Z&sks=b&skv=2018-11-09&sig=%2B4iGd%2BYUQ6dy6ziWt9qDaHYEf3DcBA0E864aL9vl5Us%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4NjI3OTcyMSwibmJmIjoxNzg2Mjc3OTIxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.9_69Bc6g9Ni5Sgyww-zp1Tprp3iDnnZ_jdgS8FPuDiY&response-content-disposition=attachment%3B%20filename%3DAttendGate-v3.0.0-alpha4-ARM64.apk&response-content-type=application%2Fvnd.android.package-archive' -o AttendGate-v3.0.0-alpha4-ARM64.apk
+          echo '0d11269f4d570bca1b7aa2ed3acde718302d3c72d68cd8ea98d3e0bc027a994e  AttendGate-v3.0.0-alpha4-ARM64.apk' | sha256sum -c -
+          unzip -t AttendGate-v3.0.0-alpha4-ARM64.apk >/dev/null
+          ls -lh AttendGate-v3.0.0-alpha4-ARM64.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: AttendGate-v3.0.0-alpha3-ARM64
-          path: AttendGate-v3.0.0-alpha3-ARM64.apk
+          name: AttendGate-v3.0.0-alpha4-ARM64
+          path: AttendGate-v3.0.0-alpha4-ARM64.apk
           retention-days: 1
           compression-level: 0
