@@ -13,17 +13,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download compiled AttendGate Alpha 5 APK
+      - name: Download compiled AttendGate Alpha 6 APK
         run: |
-          curl -L --fail --retry 3 --retry-delay 2 'https://release-assets.githubusercontent.com/github-production-release-asset/1323039156/0003f8c7-ac7c-4f1e-9771-3ca032eb1d21?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-08-09T14%3A45%3A05Z&rscd=attachment%3B+filename%3DAttendGate-v3.0.0-alpha5-ARM64.apk&rsct=application%2Fvnd.android.package-archive&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-08-09T13%3A44%3A49Z&ske=2026-08-09T14%3A45%3A05Z&sks=b&skv=2018-11-09&sig=6MkTjsMt4d4cfGftaFCBT9azE%2BRVAiTYwPHMRc9mJK0%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4NjI4NTIxOSwibmJmIjoxNzg2MjgzNDE5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.uxzRVn8q0IWdReaKrfEv4ghCWqnNWSz0V9WJHum_z6c&response-content-disposition=attachment%3B%20filename%3DAttendGate-v3.0.0-alpha5-ARM64.apk&response-content-type=application%2Fvnd.android.package-archive' -o AttendGate-v3.0.0-alpha5-ARM64.apk
-          echo 'ed8f219c54e722616c27aae83a89c614d89b8500288f07b12217bfc1cf0add34  AttendGate-v3.0.0-alpha5-ARM64.apk' | sha256sum -c -
-          unzip -t AttendGate-v3.0.0-alpha5-ARM64.apk >/dev/null
-          ls -lh AttendGate-v3.0.0-alpha5-ARM64.apk
+          curl -L --fail --retry 3 --retry-delay 2 'https://release-assets.githubusercontent.com/github-production-release-asset/1323039156/aa56477e-5712-4fcf-8c93-36947dab0865?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-08-09T19%3A06%3A28Z&rscd=attachment%3B+filename%3DAttendGate-v3.0.0-alpha6-ARM64.apk&rsct=application%2Fvnd.android.package-archive&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-08-09T18%3A05%3A44Z&ske=2026-08-09T19%3A06%3A28Z&sks=b&skv=2018-11-09&sig=%2FObJ6oYtTZ93v5W5PBwzi7f44Ycd0FpcLIDsY%2BPlvhg%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4NjMwMTYwNCwibmJmIjoxNzg2Mjk5ODA0LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.pBtkYFg3wrY9y3QyUIe9oZIDiNSWZ4fj3UJdLNGQ2yI&response-content-disposition=attachment%3B%20filename%3DAttendGate-v3.0.0-alpha6-ARM64.apk&response-content-type=application%2Fvnd.android.package-archive' -o AttendGate-v3.0.0-alpha6-ARM64.apk
+          echo '16c4b50979d9fa05cfe08e0cf5ad609a9428fc5b9d29539e1dee04217d573a2e  AttendGate-v3.0.0-alpha6-ARM64.apk' | sha256sum -c -
+          unzip -t AttendGate-v3.0.0-alpha6-ARM64.apk >/dev/null
+          ls -lh AttendGate-v3.0.0-alpha6-ARM64.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: AttendGate-v3.0.0-alpha5-ARM64
-          path: AttendGate-v3.0.0-alpha5-ARM64.apk
+          name: AttendGate-v3.0.0-alpha6-ARM64
+          path: AttendGate-v3.0.0-alpha6-ARM64.apk
           retention-days: 1
           compression-level: 0
